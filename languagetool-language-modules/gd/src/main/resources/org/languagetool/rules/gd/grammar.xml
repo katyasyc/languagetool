@@ -1,0 +1,23 @@
+#This is the main rule file
+
+<rule id="CHA_BHI" name="Cha bhi">
+    <pattern>
+      <token>cha</token>
+      <token>bhith</token>
+    </pattern>
+    <message>An do chiall thu <suggestion>cha bhi</suggestion>?</message>
+    <example type="incorrect"><marker>Cha bhith</marker> mi ann.</example>
+    <example type="correct">Cha bhi mi ann.</example>
+</rule>
+
+#Eventually we'll also want a rule that takes regular adjectives (sean, etc.) after nas/as and suggests the correct form.
+
+<rule id="NAS_SÌNE" name="Nas sìne">
+    <pattern>
+      <token<nas|as</token>
+      <token>sinne</token>
+    </pattern>
+    <message>An do chiall thu <suggestion>nas sìne</suggestion>?</message>
+    <example type="incorrect">Tha ise<marker>nas sinne</marker> na mise.</example>
+    <example type="correct">Tha ise nas sìne na mise.</example>
+</rule>
