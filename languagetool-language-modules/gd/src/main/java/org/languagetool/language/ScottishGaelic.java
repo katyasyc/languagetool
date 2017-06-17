@@ -38,13 +38,13 @@ import org.languagetool.rules.*;
 //import org.languagetool.tokenizers.gd.ScottishGaelicWordTokenizer;
 
 public class ScottishGaelic extends Language {
-
+/*
   private Tagger tagger;
   private Tokenizer wordTokenizer;
   private SentenceTokenizer sentenceTokenizer;
   private Synthesizer synthesizer;
   private Disambiguator disambiguator;
-/*
+
   @Override
   public SentenceTokenizer getSentenceTokenizer() {
     if (sentenceTokenizer == null) {
