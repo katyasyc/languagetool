@@ -14,15 +14,29 @@
     <example type="correct">Cò nach eil coma?</example>
 </rule>
 
-# some way of telling a bheil and a tha apart ...
 <rule id="A_BHEIL" name="A bheil">
     <pattern>
       <token>gum?</token>
       <token>tha|eil</token>
     </pattern>
+    <pattern>
+      <token>aig</token> #change this to any preposition TODO
+      <token>a</token>
+      <token>tha|eil</token>
+    </pattern>
     <message>Saoil an e <suggestion>bheil</suggestion> a bha fa-near dhut?</message>
     <example type="incorrect">Cò aig a <marker>tha</marker> fhios?</example>
     <example type="correct">Cò aig a bheil fhios?</example>
+</rule>
+
+<rule id="MAR_A_THA" name="Mar a tha">
+    <pattern>
+      <token>c?i?a?mar</token>
+      <token>b?h?eil</token>
+    </pattern>
+    <message>Saoil an e <suggestion>tha</suggestion> a bha fa-near dhut?</message>
+    <example type="incorrect">Ciamar a <marker>bheil</marker> thu?</example>
+    <example type="correct">Ciamar a tha thu?</example>
 </rule>
 
 #Bi past tense
@@ -95,6 +109,20 @@
     <example type="correct">Nach biodh thu ann?</example>
 </rule>
 
+#Missing adj?
+<rule id="THA_MI_DUILICH" name="Tha mi duilich">
+    <pattern>
+      <and>
+        <token postag="SENT_START" negate="yes"/>
+        <token>mi</token>
+      </and>
+      <token>duilich</token>
+    </pattern>
+    <message>Saoil am bu chòir <suggestion>tha</suggestion> a bhith ann?</message>
+    <example type="incorrect"><marker>Mi duilich</marker>.</example>
+    <example type="correct">Tha mi duilich.</example>
+</rule>
+
 #Posession TODO generalize
 <rule id="MO_CHEANN" name="Mo cheann">
     <pattern>
@@ -137,6 +165,17 @@
     <example type="correct">Tha ise nas sìne na mise.</example>
 </rule>
 
+#TODO singular masc nouns after "na"
+<rule id="NA_DAOINE" name="Na daoine">
+    <pattern>
+      <token>na</token>
+      <token>duine</token>
+    </pattern>
+    <message>Saoil an e <suggestion>daoine</suggestion> a bha fa-near dhut?</message>
+    <example type="incorrect">Na <marker>duine</marker>.</example>
+    <example type="correct">Na daoine.</example>
+</rule>
+
 #feminine adj in nom and dat cases
 <rule id="CAILEAG_BHEAG" name="Caileag bheag">
     <pattern>
@@ -146,6 +185,17 @@
     <message>Saoil an e <suggestion>caileag bheag</suggestion> a bha fa-near dhut?</message>
     <example type="incorrect">A'<marker>chaileag beag</marker>.</example>
     <example type="correct">A' chaileag bheag.</example>
+</rule>
+
+#masculine adj gen case
+<rule id="BALACH_BEAG" name="Balach beag">
+    <pattern>
+      <token>balach</token>
+      <token>bheag|bh?ig</token>
+    </pattern>
+    <message>Saoil an e <suggestion>balach beag</suggestion> a bha fa-near dhut?</message>
+    <example type="incorrect">Am <marker>balach bheag</marker>.</example>
+    <example type="correct">Am balach beag.</example>
 </rule>
 
 #masculine adj gen case
