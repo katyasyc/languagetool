@@ -25,17 +25,17 @@ import java.util.ResourceBundle;
 
 import org.languagetool.Language;
 import org.languagetool.rules.*;
-import org.languagetool.rules.spelling.hunspell.HunspellRule;
-import org.languagetool.synthesis.Synthesizer;
-import org.languagetool.synthesis.gd.ScottishGaelicSynthesizer;
-import org.languagetool.tagging.Tagger;
-import org.languagetool.tagging.disambiguation.Disambiguator;
-import org.languagetool.tagging.disambiguation.rules.XmlRuleDisambiguator;
-import org.languagetool.tagging.gd.ScottishGaelicTagger;
-import org.languagetool.tokenizers.SRXSentenceTokenizer;
-import org.languagetool.tokenizers.SentenceTokenizer;
-import org.languagetool.tokenizers.Tokenizer;
-import org.languagetool.tokenizers.gd.ScottishGaelicWordTokenizer;
+// import org.languagetool.rules.spelling.hunspell.HunspellRule;
+// import org.languagetool.synthesis.Synthesizer;
+//import org.languagetool.synthesis.gd.ScottishGaelicSynthesizer;
+// import org.languagetool.tagging.Tagger;
+// import org.languagetool.tagging.disambiguation.Disambiguator;
+// import org.languagetool.tagging.disambiguation.rules.XmlRuleDisambiguator;
+//import org.languagetool.tagging.gd.ScottishGaelicTagger;
+//import org.languagetool.tokenizers.SRXSentenceTokenizer;
+//import org.languagetool.tokenizers.SentenceTokenizer;
+//import org.languagetool.tokenizers.Tokenizer;
+//import org.languagetool.tokenizers.gd.ScottishGaelicWordTokenizer;
 
 public class ScottishGaelic extends Language {
 
@@ -44,7 +44,7 @@ public class ScottishGaelic extends Language {
   private SentenceTokenizer sentenceTokenizer;
   private Synthesizer synthesizer;
   private Disambiguator disambiguator;
-
+/*
   @Override
   public SentenceTokenizer getSentenceTokenizer() {
     if (sentenceTokenizer == null) {
@@ -52,7 +52,7 @@ public class ScottishGaelic extends Language {
     }
     return sentenceTokenizer;
   }
-
+*/
   @Override
   public String getName() {
     return "Scottish Gaelic";
