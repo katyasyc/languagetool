@@ -67,7 +67,7 @@ public class ScottishGaelic extends Language {
   public String[] getCountries() {
     return new String[]{"GB, CA"};
   }
-
+/*
   @Override
   public Tagger getTagger() {
     if (tagger == null) {
@@ -100,26 +100,27 @@ public class ScottishGaelic extends Language {
     return disambiguator;
   }
 
+    @Override
+    public List<Rule> getRelevantRules(ResourceBundle messages) throws IOException {
+      return Arrays.asList(
+              new CommaWhitespaceRule(messages),
+              new DoublePunctuationRule(messages),
+              new GenericUnpairedBracketsRule(messages,
+                      Arrays.asList("[", "(", "{", "“", "«", "»", "‘", "\"", "'"),
+                      Arrays.asList("]", ")", "}", "”", "»", "«", "’", "\"", "'")),
+              new HunspellRule(messages, this),
+              new UppercaseSentenceStartRule(messages, this),
+              new MultipleWhitespaceRule(messages, this),
+              // Specific to Galician:
+              new SimpleReplaceRule(messages),
+              new CastWordsRule(messages)
+      );
+    }
+
+*/
   @Override
   public Contributor[] getMaintainers() {
     return new Contributor[] { new Contributor("Catrìona Anderson") };
-  }
-
-  @Override
-  public List<Rule> getRelevantRules(ResourceBundle messages) throws IOException {
-    return Arrays.asList(
-            new CommaWhitespaceRule(messages),
-            new DoublePunctuationRule(messages),
-            new GenericUnpairedBracketsRule(messages,
-                    Arrays.asList("[", "(", "{", "“", "«", "»", "‘", "\"", "'"),
-                    Arrays.asList("]", ")", "}", "”", "»", "«", "’", "\"", "'")),
-            new HunspellRule(messages, this),
-            new UppercaseSentenceStartRule(messages, this),
-            new MultipleWhitespaceRule(messages, this),
-            // Specific to Galician:
-            new SimpleReplaceRule(messages),
-            new CastWordsRule(messages)
-    );
   }
 
 }
