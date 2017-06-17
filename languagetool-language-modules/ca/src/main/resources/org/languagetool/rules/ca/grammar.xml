@@ -9795,7 +9795,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <token regexp="yes">què|que</token>
                     </marker>
                 </pattern>
-                <message>Construcció incorrecta, si no equival a "del qual".</message>
+                <message>Construcció incorrecta, si no equival a "del qual" o a "de quina cosa".</message>
                 <suggestion>que</suggestion>
                 <example correction="que">Malgrat <marker>de què</marker></example>
                 <example correction="que">Amb la condició addicional <marker>de què</marker> vingui.</example>
@@ -26289,6 +26289,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rulegroup>
     </category>
     <category id="INCORRECT_EXPRESSIONS" name="Expressions incorrectes" type="grammar">
+        <rule id="DONAR_QUE_PARLAR" name="*donar que parlar">
+            <pattern>
+                <marker>
+                    <token inflected="yes">donar</token>
+                    <token regexp="yes">què|que</token>
+                </marker>
+                <token>parlar</token>
+            </pattern>
+            <message>Expressió incorrecta.</message>
+            <suggestion><match no="1" postag="(V.*)" postag_regexp="yes" postag_replace="$1">fer</match></suggestion>
+            <example correction="fer">No els agrada <marker>donar que</marker> parlar.</example>
+            <example correction="feien">Sempre <marker>donaven què</marker> parlar.</example>
+        </rule>
         <rule id="DOLORES" name="Dolores (municipi) / Dolors">
             <antipattern>
                 <marker>
@@ -35818,11 +35831,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <pattern>
                     <token>de</token>
                     <marker>
-                        <token>caire</token>
+                        <token regexp="yes">caire|carés</token>
                     </marker>
                     <!-- <token postag="AQ.[MC][SN]." postag_regexp="yes"/> -->
                 </pattern>
-                <message>¿Volíeu dir <suggestion>caràcter</suggestion> en lloc de "caire" (=aspecte)?</message>
+                <message>¿Volíeu dir <suggestion>caràcter</suggestion> en lloc de "\2" (=aspecte)?</message>
                 <example correction="caràcter">Prengué una decisió de <marker>caire</marker> polític.</example>
                 <example>Això té un altre caire.</example>
             </rule>
@@ -35830,12 +35843,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <pattern>
                     <token>de</token>
                     <marker>
-                        <token>caire</token>
+                        <token regexp="yes">caire|carés</token>
                     </marker>
                     <token postag="RG_anteposat"/>
                     <token postag="AQ.[MC][SN]." postag_regexp="yes"/>
                 </pattern>
-                <message>¿Volíeu dir <suggestion>caràcter</suggestion> en lloc de "caire" (=aspecte)?</message>
+                <message>¿Volíeu dir <suggestion>caràcter</suggestion> en lloc de "\2" (=aspecte)?</message>
                 <example correction="caràcter">Prengué una decisió de <marker>caire</marker> marcadament polític.</example>
                 <example>Això té un altre caire.</example>
             </rule>
