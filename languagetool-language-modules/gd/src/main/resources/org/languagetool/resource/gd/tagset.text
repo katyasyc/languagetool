@@ -1,0 +1,207 @@
+Scottish Gaelic tags, a dictionary-based approach based on the Faclair Beag project.
+Usage rights under LanguageTool's GNU license graciously granted by Michael Bauer.
+Anyone wishing to reuse the Faclair data should contact him at fios@igaidhlig.org.
+Note: Many words have different forms depending on dialect and register, this
+is accommodated by means of numbering. In general, this checker will recognize all
+forms but only suggest corrections, as appropriate, with the most common first
+series of inflected forms.
+
+Adjectives
+
+J	Root
+JL	RootLenited
+JC     Comparative1
+JCL    Comparative1Len
+JC2	Comparative2
+JCL2	Comparative2Len
+JP	Plural
+JPL	PluralLen
+JGM	GenMasc
+JGML	GenMascLen
+JGF	GenFem
+JGFL	GenFemLen
+JD	Dat
+JDL	DatLen
+JO	Other Adjective Forms
+
+Common nouns
+
+Feminine
+
+NFR	Root
+NFRL	RootLenited
+NFD	FemDatSing
+NFDL	FemDatSingLen
+NFG1	FemGenSing1
+NFGL1	FemGenSingLen1
+NFG2	FemGenSing2
+NFGL2	FemGenSingLen2
+NFG3	FemGenSing3
+NFGL3	FemGenSingLen3
+NFG4	FemGenSing4
+NFGL4	FemGenSingLen4
+NFV	FemVocSing
+NFNP1	FemNomPl1
+NFNPL1	FemNomPlLen1
+NFNP2	FemNomPl2
+NFNPL2	FemNomPlLen2
+NFNP3	FemNomPl3
+NFNPL3	FemNomPlLen3
+NFNP4	FemNomPl4
+NFNPL4	FemNomPlLen4
+NFDP	FemDatPl
+NFDPL	FemDatPlLen
+NFGP1	FemGenPl1
+NFGPL1	FemGenPlLen1
+NFGP2	FemGenPl2
+NFGPL2	FemGenPlLen2
+NFGP3	FemGenPl3
+NFGPL3	FemGenPlLen3
+NFGP4	FemGenPl4
+NFGPL4	FemGenPlLen4
+NFVP	FemVocPl
+NFO	Other Feminine Noun Forms
+
+Masculine
+
+NMR	Root
+NMRL	RootLenited
+NMG1	MascGenSing1
+NMGL1	MascGenSingLen1
+NMG2	MascGenSing2
+NMGL2	MascGenSingLen2
+NMG3	MascGenSing3
+NMGL3	MascGenSingLen3
+NMG4	MascGenSing4
+NMGL4	MascGenSingLen4
+NMV	MascVocSing
+NMNP1	MascNomPl1
+NMNPL1	MascNomPlLen1
+NMNP1	MascNomPl1
+NMNPL2	MascNomPlLen2
+NMNP3	MascNomPl3
+NMNPL3	MascNomPlLen3
+NMNP4	MascNomPl4
+NMNPL4	MascNomPlLen4
+NMDP	MascDatPl
+NMDPL	MascDatPlLen
+NMGP1	MascGenPl1
+NMGPL1	MascGenPlLen1
+NMGP2	MascGenPl2
+NMGPL2	MascGenPlLen2
+NMGP3	MascGenPl3
+NMGPL3	MascGenPlLen3
+NMGP4	MascGenPl4
+NMGPL4	MascGenPlLen4
+NMVP1	MascVocPl1
+NMVP2	MascVocPl2
+NMO	Other Masculine Noun Forms
+
+Proper nouns
+
+Feminine given names
+
+Root
+RootLenited
+FemNameDat
+FemNameDatLen
+FemNameGen1
+FemNameGenLen1
+FemNameGen2
+FemNameGenLen2
+FemNameVoc
+Other Feminine Name Forms
+
+Masculine given names
+
+Root
+RootLenited
+MascNameGen1
+MascNameGenLen1
+MascNameGen2
+MascNameGenLen2
+MascNameVoc
+Other Masculine Name Forms
+
+Surnames
+
+MascSurn
+MascSurnLen
+MascSurnGenLen
+FemSurn
+
+Verbs
+
+Imperative1Sing
+Imperative2Sing
+Imperative3Sing
+Imperative1Pl
+Imperative2Pl
+Imperative3Pl
+VerbalNoun1
+VerbalNoun1Len
+VerbalNoun2
+VerbalNoun2Len
+VerbalNoun3
+VerbalNoun3Len
+VerbalNoun4
+VerbalNoun4Len
+VerbalNoun5
+VerbalNoun5Len
+VerbalNoun6
+VerbalNoun6Len
+VerbalNoun7
+VerbalNoun7Len
+VerbalNoun8
+VerbalNoun8Len
+FutureIndependent
+FutureRelative
+FutureDependent
+FutureDependentLen
+PastIndependent
+PastDependent
+PastParticiple
+PastParticipleLen
+Conditional1Sing
+Conditional23
+Conditional1Pl
+ConditionalDependent1Sing
+ConditionalDependent1SingLen
+ConditionalDependent23
+ConditionalDependent23Len
+ConditionalDependent1Pl
+ConditionalDependent1PlLen
+ImpersonalImperative1
+ImpersonalImperative2
+ImpersonalFutureIndendent
+ImpersonalFutureRelative
+ImpersonalFutureDependent
+ImpersonalFutureDependentLen
+ImpersonalPastIndendent
+ImpersonalPastDependent
+ImpersonalConditionalIndendent1
+ImpersonalConditionalIndendent2
+ImpersonalConditionalIndendent3
+ImpersonalConditionalDependent1
+ImpersonalConditionalDependent2
+ImpersonalConditionalDependent3
+ImpersonalConditionalDependentLen1
+ImpersonalConditionalDependentLen2
+ImpersonalConditionalDependentLen3
+Other Verb Forms
+
+Neach (don't ask)
+NeachTypeCompRoot
+NeachTypeCompRootLen
+NeachTypeCompMascGenSing1
+NeachTypeCompMascGenSingLen1
+NeachTypeCompMascNomPl1
+NeachTypeCompMascNomPlLen1
+NeachTypeCompMascGenPl1
+NeachTypeCompMascGenPlLen1
+NeachTypeCompFemGenSing1
+NeachTypeCompFemGenSingLen1
+NeachTypeCompFemNomPl1
+NeachTypeCompFemNomPlLen1
+NeachTypeCompFemGenPl1
+NeachTypeCompFemGenPlLen1
