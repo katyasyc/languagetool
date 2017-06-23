@@ -1,161 +1,298 @@
 #This is the main rule file
+#misc typos
+<category id="MISC_TYPOS" name="miscellaneous typos">
+  <rule id="ANN_AN" name="Ann an">
+      <pattern>
+        <token>an</token>
+        <token>ann</token>
+      </pattern>
+      <message>Saoil an e <suggestion>ann an</suggestion> neo <suggestion>ann ann</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Chan <marker>an ann</marker> Steòrnobhaigh a choinnich sinn.</example>
+      <example type="correct">Chan ann an Steòrnobhaigh a choinnich sinn.</example>
+      <example type="correct">Chan ann ann an Steòrnobhaigh a choinnich sinn.</example>
+  </rule>
+  <rule id="ANN_AM" name="Ann am/an">
+      <pattern>
+        <token>an</token>
+        <token>[bmp].*</token>
+      </pattern>
+      <message>Saoil an e <suggestion>am</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Bha sinn ann <marker>an</marker> Baile a' Chaolais.</example>
+      <example type="correct">Bha sinn ann am Baile a' Chaolais.</example>
+  </rule>
+  <rule id="ANN_AN" name="Ann am/an">
+      <pattern>
+        <token>an</token>
+        <token>^[^bmp].*</token>
+      </pattern>
+      <message>Saoil an e <suggestion>an</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Bha sinn ann <marker>am</marker> dùthaich.</example>
+      <example type="correct">Bha sinn ann an dùthaich.</example>
+  </rule>
+  <rule id="ANNS_A" name="Anns a'">
+      <pattern>
+        <token>anns</token>
+        <token>a'</token>
+        <token>[dts].*</token>
+      </pattern>
+      <message>Saoil an e <suggestion>an</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Bha sinn anns <marker>a'</marker> dùthaich.</example>
+      <example type="correct">Bha sinn anns an dùthaich.</example>
+      <example type="correct">Bha sinn san dùthaich.</example>
+  </rule>
+<category/>
+<category id="BI" name="typo with bi">
+  <rulegroup id="BI_PRESENT" name="Present tense bi">
+    <rule id="CHAN_EIL" name="Chan eil">
+        <pattern>
+          <token>chan?|nach</token>
+          <token>tha|bheil</token>
+        </pattern>
+        <message>Saoil an e <suggestion>eil</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect"><marker>Cha bheil</marker> lorg oirre.</example>
+        <example type="correct">Chan eil lorg oirre.</example>
+        <example type="incorrect">Cò nach <marker>bheil</marker> coma?</example>
+        <example type="correct">Cò nach eil coma?</example>
+    </rule>
+    <rule id="A_BHEIL" name="A bheil">
+        <pattern>
+          <token>gum?</token>
+          <token>tha|eil</token>
+        </pattern>
+        <pattern>
+          <token>aig</token> #change this to any preposition TODO
+          <token>a</token>
+          <token>tha|eil</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bheil</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Cò aig a <marker>tha</marker> fhios?</example>
+        <example type="correct">Cò aig a bheil fhios?</example>
+    </rule>
+    <rule id="MAR_A_THA" name="Mar a tha">
+        <pattern>
+          <token>c?i?a?mar</token> # other interrogatives TODO
+          <token>b?h?eil|rob?h?</token>
+        </pattern>
+        <message>Saoil an e <suggestion>tha</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Ciamar a <marker>bheil</marker> thu?</example>
+        <example type="correct">Ciamar a tha thu?</example>
+        <example type="incorrect">Sin mar a <marker>robh</marker>.</example>
+        <example type="correct">Sin mar a bha.</example>
+    </rule>
+  </rulegroup>
+  <rulegroup id="BI_PAST" name="Past tense bi">
+    <rule id="BHA_ROBH" name="Error with bha and robh">
+        <pattern>
+          <token>chan?|gun?|an?</token>
+          <token>bh?a</token>
+        </pattern>
+        <message>Saoil an e <suggestion>robh</suggestion> a bha fa-near dhut?</message>
+        <example type="incorrect"><marker>Cha bha</marker> for agam ort.</example>
+        <example type="incorrect"><marker>Chan robh</marker> for agam ort.</example>
+        <example type="correct">Cha robh for agam ort.</example>
+        <example type="incorrect">Sin mar a <marker>robh</marker>.</example>
+        <example type="correct">Sin mar a bha.</example>
+    </rule>
+    <rule id="AN_ROBH" name="An robh">
+        <pattern>
+          <token>a</token>
+          <token>rob?h?</token>
+        </pattern>
+        <message>Saoil an e <suggestion>an</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect"><marker>A robh</marker> fhios agaibh?</example>
+        <example type="correct">An robh fhios agaibh?</example>
+    </rule>
+    <rule id="GUN_ROBH" name="Gun robh">
+        <pattern>
+          <token>gu</token>
+          <token>rob?h?</token>
+        </pattern>
+        <message>Saoil an e <suggestion>gun</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect"><marker>Gu robh</marker> Dia maille riut.</example>
+        <example type="correct">Gun robh Dia maille riut.</example>
+    </rule>
+    <rule id="CHA_ROBH" name="Cha robh">
+        <pattern>
+          <token>chan</token>
+          <token>rob?h?</token>
+        </pattern>
+        <message>Saoil an e <suggestion>cha</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect"><marker>Chan robh</marker> for agam ort.</example>
+        <example type="correct">Cha robh for agam ort.</example>
+    </rule>
+  </rulegroup>
+  <rulegroup id="BI_FUT" name="Future tense bi">
+    <rule id="CHA_BHI" name="Cha bhi">
+        <pattern>
+          <token>cha</token>
+          <token>b[iìí]|bh?[iìí][dt]h|bh?[iìí]os|b[iìí]thidh</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bhi</suggestion> a bha fa-near dhut?</message>
+        <url>http://www.akerbeltz.org/index.php?title=%C3%89iridh_e_is_ceannaidh_e%3F_or_the_Future_tense</url>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Cha <marker>bhith</marker> mi ann.</example>
+        <example type="correct">Cha bhi mi ann.</example>
+    </rule>
+    <rule id="NACH_BI" name="Nach bi">
+        <pattern>
+          <token>nach|am</token>
+          <token>bh[iìí]|bh?[iìí][dt]h|bh?[iìí]os|bh[iìí]thidh</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bi</suggestion> a bha fa-near dhut?</message>
+        <url>http://www.akerbeltz.org/index.php?title=%C3%89iridh_e_is_ceannaidh_e%3F_or_the_Future_tense</url>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Nach <marker>bhi</marker> thu ann?</example>
+        <example type="correct">Nach bi thu ann?</example>
+    </rule>
+    <rule id="A_BHIOS" name="A bhios">
+        <pattern>
+          <token>a|mura</token>
+          <token>bh?[iìí]|bh?[iìí][dt]h|b[iìí]os|bh?[iìí]thidh</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bhios</suggestion> a bha fa-near dhut?</message>
+        <url>http://www.akerbeltz.org/index.php?title=%C3%89iridh_e_is_ceannaidh_e%3F_or_the_Future_tense</url>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Bhiodh sin mar a <marker>bhi</marker> e.</example>
+        <example type="correct">Bhiodh sin mar a bhios e.</example>
+    </rule>
+  <rulegroup id="BI_COND" name="Conditional tense bi">
+    <rule id="CHA_BHIODH" name="Cha bhiodh">
+        <pattern>
+          <token>cha</token>
+          <token>biod?h?|bitheadh</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bhiodh</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Cha <marker>biodh</marker> iad an Glaschu.</example>
+        <example type="correct">Cha bhiodh iad an Glaschu.</example>
+    </rule>
+    <rule id="NACH_BIODH" name="Nach biodh">
+        <pattern>
+          <token>nach|am</token>
+          <token>bhiod?h?|bhitheadh</token>
+        </pattern>
+        <message>Saoil an e <suggestion>biodh</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Nach <marker>bhiodh</marker> thu ann?</example>
+        <example type="correct">Nach biodh thu ann?</example>
+    </rule>
+    <rule id="BHITHINN" name="Bhithinn">
+        <pattern>
+          <token>bhiod?h?|bhitheadh</token>
+          <token>mi</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bhithinn</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect"><marker>Bhiodh mi</marker> na comain.</example>
+        <example type="correct">Bhithinn na comain.</example>
+    </rule>
+    <rule id="BITHINN" name="Bithinn">
+        <pattern>
+          <token>biod?h?|bitheadh</token>
+          <token>mi</token>
+        </pattern>
+        <message>Saoil an e <suggestion>bithinn</suggestion> a bha fa-near dhut?</message>
+        <url>http://taic.me.uk/pdf/appen2.PDF</url>
+        <example type="incorrect">Am <marker>biodh mi</marker> na comain?</example>
+        <example type="correct">Am bithinn na comain?</example>
+    </rule>
 
-
-#Bi present tense
-<rule id="CHAN_EIL" name="Chan eil">
-    <pattern>
-      <token>chan?|nach</token>
-      <token>tha|bheil</token>
-    </pattern>
-    <message>Saoil an e <suggestion>eil</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect"><marker>Cha bheil</marker> lorg oirre.</example>
-    <example type="correct">Chan eil lorg oirre.</example>
-    <example type="incorrect">Cò nach <marker>bheil</marker> coma?</example>
-    <example type="correct">Cò nach eil coma?</example>
-</rule>
-
-<rule id="A_BHEIL" name="A bheil">
-    <pattern>
-      <token>gum?</token>
-      <token>tha|eil</token>
-    </pattern>
-    <pattern>
-      <token>aig</token> #change this to any preposition TODO
-      <token>a</token>
-      <token>tha|eil</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bheil</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Cò aig a <marker>tha</marker> fhios?</example>
-    <example type="correct">Cò aig a bheil fhios?</example>
-</rule>
-
-<rule id="MAR_A_THA" name="Mar a tha">
-    <pattern>
-      <token>c?i?a?mar</token>
-      <token>b?h?eil</token>
-    </pattern>
-    <message>Saoil an e <suggestion>tha</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Ciamar a <marker>bheil</marker> thu?</example>
-    <example type="correct">Ciamar a tha thu?</example>
-</rule>
-
-#Bi past tense
-<rule id="CHA_ROBH" name="Cha robh">
-    <pattern>
-      <token>chan?|gun?|an?</token>
-      <token>bh?a|ro[hb]</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bhi</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect"><marker>Cha bha</marker> for agam ort.</example>
-    <example type="incorrect"><marker>Chan robh</marker> for agam ort.</example>
-    <example type="correct">Cha robh for agam ort.</example>
-    <example type="incorrect"><marker>Gu robh</marker> Dia maille riut.</example>
-    <example type="correct">Gun robh Dia maille riut.</example>
-    <example type="incorrect"><marker>A robh</marker> fhios agaibh?</example>
-    <example type="correct">An robh fhios agaibh?</example>
-    <example type="incorrect">Sin mar a <marker>robh</marker>.</example>
-    <example type="correct">Sin mar a bha.</example>
-</rule>
-
-#Bi future tense
-<rule id="CHA_BHI" name="Cha bhi">
-    <pattern>
-      <token>cha</token>
-      <token>bi|bh?i[dt]h|bh?ios</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bhi</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Cha <marker>bhith</marker> mi ann.</example>
-    <example type="correct">Cha bhi mi ann.</example>
-</rule>
-
-<rule id="NACH_BI" name="Nach bi">
-    <pattern>
-      <token>nach|am</token>
-      <token>bhi|bh?i[dt]h|bh?ios</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bi</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Nach <marker>bhi</marker> thu ann?</example>
-    <example type="correct">Nach bi thu ann?</example>
-</rule>
-
-<rule id="A_BHIOS" name="A bhios">
-    <pattern>
-      <token>a|mura</token>
-      <token>bh?i|bh?i[dt]h|bios</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bhios</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Bhiodh sin mar a <marker>bhi</marker> e.</example>
-    <example type="correct">Bhiodh sin mar a bhios e.</example>
-</rule>
-
-#Bi conditional
-<rule id="CHA_BHIODH" name="Cha bhiodh">
-    <pattern>
-      <token>cha</token>
-      <token>biod?h?|bitheadh</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bhiodh</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Cha <marker>biodh</marker> iad an Glaschu.</example>
-    <example type="correct">Cha bhiodh iad an Glaschu.</example>
-</rule>
-
-<rule id="NACH_BIODH" name="Nach biodh">
-    <pattern>
-      <token>nach|am</token>
-      <token>bhiod?h?|bhitheadh</token>
-    </pattern>
-    <message>Saoil an e <suggestion>biodh</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Nach <marker>bhiodh</marker> thu ann?</example>
-    <example type="correct">Nach biodh thu ann?</example>
-</rule>
-
-#Missing adj?
-<rule id="THA_MI_DUILICH" name="Tha mi duilich">
-    <pattern>
-      <and>
-        <token postag="SENT_START" negate="yes"/>
-        <token>mi</token>
-      </and>
-      <token>duilich</token>
-    </pattern>
-    <message>Saoil am bu chòir <suggestion>tha</suggestion> a bhith ann?</message>
-    <example type="incorrect"><marker>Mi duilich</marker>.</example>
-    <example type="correct">Tha mi duilich.</example>
-</rule>
-
-#Posession TODO generalize
-<rule id="MO_CHEANN" name="Mo cheann">
-    <pattern>
-      <token>[dm][o']</token>
-      <token>ceann</token>
-    </pattern>
-    <message>Saoil an e <suggestion>cheann</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Tha mo <marker>ceann</marker> gort.</example>
-    <example type="correct">Tha mo cheann gort.</example>
-</rule>
-
-<rule id="AR_MÀTHAIR" name="Ar màthair">
-    <pattern>
-      <token>a[rn]|ur</token>
-      <token>mhàthair</token>
-    </pattern>
-    <message>Saoil an e <suggestion>màthair</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Sin ar <marker>mhàthair</marker>.</example>
-    <example type="correct">Sin ar màthair.</example>
-</rule>
-
-<rule id="AR_N-ATHAIR" name="Ar n-athair">
-    <pattern>
-      <token>a[rn]|ur</token>
-      <token>athair</token>
-    </pattern>
-    <message>Saoil an e <suggestion>n-athair</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Sin ar <marker>athair</marker>.</example>
-    <example type="correct">Sin ar n-athair.</example>
-</rule>
+  </rulegroup>
+  <rulegroup id="INT" name="interrogative verb">
+    #TODO exception for Cò às a tha thu
+    #capture sa etc.
+    <rule id="AIG_A_BHEIL" name="Aig a bheil">
+        <pattern>
+          <token>aig|far|ris|leis|às|air|anns|thar|b?h?on</token> # other prepositions TODO
+          <token>an?m?</token>
+          <token>b?eil|bha|bh?ios|bhi[td]?h?</token>
+        </pattern>
+        <pattern>
+          <token>sa</token>
+          <token>eil|bha|bh?ios|bhi[td]?h?</token>
+        </pattern>
+        <message>Saoil an e <suggestion>a bheil</suggestion>, <suggestion>am bi</suggestion> neo <suggestion>an robh</suggestion> a bha fa-near dhut?</message>
+        <example type="incorrect">Far a <marker>tha</marker> na cloinne.</example>
+        <example type="correct">Far a bheil na cloinne</example>
+        <example type="incorrect">Far <marker>a bha</marker> iad.</example>
+        <example type="correct">Far an robh iad.</example>
+        <example type="incorrect">Far <marker>a bhios</marker> na daoine.</example>
+        <example type="correct">Far am bi na daoine.</example>
+    </rule>
+    <rule id="SAN_ROBH" name="san robh">
+      <pattern>
+        <token>sam?n?</token>
+        <token>bha</token>
+      </pattern>
+      <message>Saoil an e <suggestion>san robh</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect"><marker>Sa bha</marker> mi nam bhalach.</example>
+      <example type="correct">San robh mi nam bhalach.</example>
+    </rule>
+    <rule id="SAM_BI" name="sam bi">
+      <pattern>
+        <token>sam?n?</token>
+        <token>bh?ios|bhi[td]?h?</token>
+      </pattern>
+      <message>Saoil an e <suggestion>sam bi</suggestion> neo <suggestion>sam bith</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Seo an taigh <marker>sam bith</marker> sinn a' fuireach an ath-bhliadhna.</example>
+      <example type="correct">Seo an taigh sam bi sinn a' fuireach an ath-bhliadhna.</example>
+      <example type="incorrect">Cha robh fhios aig duine <marker>sam bi</marker>.</example>
+      <example type="correct">Cha robh fhios aig duine sam bith.</example>
+    </rule>
+  </rulegroup>
+  #Missing adj?
+  <rule id="THA_MI_DUILICH" name="Tha mi duilich">
+      <pattern>
+        <and>
+          <token postag="SENT_START" negate="yes"/>
+          <token>mi</token>
+        </and>
+        <token>duilich</token>
+      </pattern>
+      <message>Saoil am bu chòir <suggestion>tha</suggestion> a bhith ann?</message>
+      <example type="incorrect"><marker>Mi duilich</marker>.</example>
+      <example type="correct">Tha mi duilich.</example>
+  </rule>
+</category>
+<rulegroup id="POSSESSIVE" name="Lenition after posessives">
+  #Posession TODO generalize
+  <rule id="MO_CHEANN" name="Mo cheann">
+      <pattern>
+        <token>[dm][o']</token>
+        <token>ceann</token>
+      </pattern>
+      <message>Saoil an e <suggestion>cheann</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Tha mo <marker>ceann</marker> gort.</example>
+      <example type="correct">Tha mo cheann gort.</example>
+  </rule>
+  <rule id="AR_MÀTHAIR" name="Ar màthair">
+      <pattern>
+        <token>a[rn]|ur</token>
+        <token>mhàthair</token>
+      </pattern>
+      <message>Saoil an e <suggestion>màthair</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Sin ar <marker>mhàthair</marker>.</example>
+      <example type="correct">Sin ar màthair.</example>
+  </rule>
+  <rule id="AR_N-ATHAIR" name="Ar n-athair">
+      <pattern>
+        <token>a[rn]|ur</token>
+        <token>athair</token>
+      </pattern>
+      <message>Saoil an e <suggestion>n-athair</suggestion> a bha fa-near dhut?</message>
+      <example type="incorrect">Sin ar <marker>athair</marker>.</example>
+      <example type="correct">Sin ar n-athair.</example>
+  </rule>
+</rulegroup>
 #Eventually we'll also want a rule that takes regular adjectives (sean, etc.) after nas/as and suggests the correct form.
-
-<rule id="NAS_SÌNE" name="Nas sìne">
+<rulegroup id="ADJ_COMPARISON" name="Adjective comparison">
+  <rule id="NAS_SÌNE" name="Nas sìne">
     <pattern>
       <token>nas|as</token>
       <token>sinne</token>
@@ -163,9 +300,9 @@
     <message>Saoil an e <suggestion>nas sìne</suggestion> a bha fa-near dhut?</message>
     <example type="incorrect">Tha ise<marker>nas sinne</marker> na mise.</example>
     <example type="correct">Tha ise nas sìne na mise.</example>
-</rule>
-
-#TODO singular masc nouns after "na"
+  </rule>
+</rulegroup>
+#TODO singular masc nouns after "na"--but beware "tha i na duine"
 <rule id="NA_DAOINE" name="Na daoine">
     <pattern>
       <token>na</token>
@@ -175,36 +312,64 @@
     <example type="incorrect">Na <marker>duine</marker>.</example>
     <example type="correct">Na daoine.</example>
 </rule>
-
-#feminine adj in nom and dat cases
-<rule id="CAILEAG_BHEAG" name="Caileag bheag">
+#TODO plural adj after "na"
+<rule id="NA_DAOINE" name="Na daoine">
     <pattern>
-      <token>caileag</token>
-      <token>beag</token>
+      <token>na</token>
+      <token>daoine</token> #TODO pl noun
+      <token>m[òó]r</token> #TODO sing. 1syllable adj
     </pattern>
-    <message>Saoil an e <suggestion>caileag bheag</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">A'<marker>chaileag beag</marker>.</example>
-    <example type="correct">A' chaileag bheag.</example>
+    <message>Saoil an e <suggestion>mòra</suggestion> a bha fa-near dhut?</message>
+    <example type="incorrect">Na daoine <marker>mòr</marker>.</example>
+    <example type="correct">Na daoine mòra.</example>
 </rule>
-
 #masculine adj gen case
-<rule id="BALACH_BEAG" name="Balach beag">
+<rule id="AIG_A'_BHALACH" name="Aig a' bhalach">
     <pattern>
+      <token>aig</token> #TODO any preposition
+      <token>am</token>
       <token>balach</token>
-      <token>bheag|bh?ig</token>
     </pattern>
-    <message>Saoil an e <suggestion>balach beag</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Am <marker>balach bheag</marker>.</example>
-    <example type="correct">Am balach beag.</example>
+    <message>Saoil an e <suggestion>a' bhalach</suggestion> a bha fa-near dhut?</message>
+    <example type="incorrect">Aig <marker>am balach</marker>.</example>
+    <example type="correct">Aig a' bhalach.</example>
 </rule>
+<rulegroup id="ADJ_LENITION" name="Adjective lenition (after nouns)">
+    #feminine adj in nom and dat cases
+  <rule id="CAILEAG_BHEAG" name="Caileag bheag">
+      <pattern>
+        <token>caileag</token>
+        <token>beag</token>
+      </pattern>
+      <message>Saoil an e <suggestion>caileag bheag</suggestion> a bha fa-near dhut?</message>
+      <url>http://akerbeltz.org/images/4/41/Na_Tuislean_n%C3%B2s_%C3%B9r_.pdf</url>
+      <example type="incorrect">A'<marker>chaileag beag</marker>.</example>
+      <example type="correct">A' chaileag bheag.</example>
+  </rule>
+  #masculine adj nom case
+  <rule id="BALACH_BEAG" name="Balach beag">
+      <pattern>
+        <token>balach</token>
+        <token>bheag|bh?ig</token>
+      </pattern>
+      <message>Saoil an e <suggestion>balach beag</suggestion> a bha fa-near dhut?</message>
+      <url>http://akerbeltz.org/images/4/41/Na_Tuislean_n%C3%B2s_%C3%B9r_.pdf</url>
+      <example type="incorrect">Am <marker>balach bheag</marker>.</example>
+      <example type="correct">Am balach beag.</example>
+  </rule>
+  #masculine adj gen case
+  <rule id="BHALAICH_BHIG" name="Balaich bhig">
+      <pattern>
+        <token>bh?alaich</token>
+        <token>beag</token>
+      </pattern>
+      <message>Saoil an e <suggestion>bhalaich bhig</suggestion> a bha fa-near dhut?</message>
+      <url>http://akerbeltz.org/images/4/41/Na_Tuislean_n%C3%B2s_%C3%B9r_.pdf</url>
+      <example type="incorrect">Falt a' <marker>bhalaich beag</marker>.</example>
+      <example type="correct">Falt a' bhalaich bhig.</example>
+  </rule>
+</rulegroup>
 
-#masculine adj gen case
-<rule id="BHALAICH_BHIG" name="Balaich bhig">
-    <pattern>
-      <token>bhalaich</token>
-      <token>beag</token>
-    </pattern>
-    <message>Saoil an e <suggestion>bhalaich bhig</suggestion> a bha fa-near dhut?</message>
-    <example type="incorrect">Falt a' <marker>bhalaich beag</marker>.</example>
-    <example type="correct">Falt a' bhalaich bhig.</example>
-</rule>
+
+#style mòran daoine / dhaoine
+# diofar + plgennoun -> suggest caochladh

@@ -5,7 +5,7 @@
 	<identifier value="org.openoffice.languagetool.oxt" />
 	<display-name>
 		<name lang="en-US">LanguageTool. Open source language checker</name>
-        <name lang="de">LanguageTool. Stil- und Grammatikprüfung</name>
+    <name lang="de">LanguageTool. Stil- und Grammatikprüfung</name>
 		<name lang="sk">LanguageTool. Open source jazyková kontrola.</name>
 		<name lang="pl">LanguageTool. Wolnodostępne narzędzie korektorskie.</name>
 		<name lang="fr">LanguageTool. Correcteur grammatical Open Source</name>
@@ -21,9 +21,10 @@
 		<name lang="ast">LanguageTool. Correutor gramatical de códigu abiertu.</name>
 		<name lang="zh">LanguageTool. 开源的语言检查工具</name>
 		<name lang="br">LanguageTool. Reizher reizhskrivadurel frank.</name>
-        <name lang="el">LanguageTool. Γραμματικός διορθωτής ανοικτού κώδικα.</name>
-        <name lang="ca">LanguageTool. Corrector gramatical de codi obert</name>
-        <name lang="ta">LanguageTool. திற மூல இலக்கணப்பிழை திருத்தி</name>
+    <name lang="el">LanguageTool. Γραμματικός διορθωτής ανοικτού κώδικα.</name>
+    <name lang="ca">LanguageTool. Corrector gramatical de codi obert</name>
+    <name lang="ta">LanguageTool. திற மூல இலக்கணப்பிழை திருத்தி</name>
+		<name lang="gd">LanguageTool. Open source language checker</name>
 	</display-name>
 	<version value="3.8-SNAPSHOT" />
 	<release-notes>
@@ -34,7 +35,7 @@
 	</icon>
 	<publisher>
         <name xlink:href="http://www.languagetool.org" lang="en">LanguageTool</name>
-    </publisher>	
+    </publisher>
 	<dependencies>
 		<OpenOffice.org-minimal-version value="3.0.1" d:name="OpenOffice.org 3.0.1" />
 	</dependencies>

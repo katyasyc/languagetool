@@ -25,25 +25,25 @@ import java.util.ResourceBundle;
 
 import org.languagetool.Language;
 import org.languagetool.rules.*;
-// import org.languagetool.rules.spelling.hunspell.HunspellRule;
+import org.languagetool.rules.spelling.hunspell.HunspellRule;
 // import org.languagetool.synthesis.Synthesizer;
 //import org.languagetool.synthesis.gd.ScottishGaelicSynthesizer;
-// import org.languagetool.tagging.Tagger;
-// import org.languagetool.tagging.disambiguation.Disambiguator;
-// import org.languagetool.tagging.disambiguation.rules.XmlRuleDisambiguator;
-//import org.languagetool.tagging.gd.ScottishGaelicTagger;
-//import org.languagetool.tokenizers.SRXSentenceTokenizer;
-//import org.languagetool.tokenizers.SentenceTokenizer;
-//import org.languagetool.tokenizers.Tokenizer;
-//import org.languagetool.tokenizers.gd.ScottishGaelicWordTokenizer;
+import org.languagetool.tagging.Tagger;
+import org.languagetool.tagging.disambiguation.Disambiguator;
+import org.languagetool.tagging.disambiguation.rules.XmlRuleDisambiguator;
+import org.languagetool.tagging.gd.ScottishGaelicTagger;
+import org.languagetool.tokenizers.SRXSentenceTokenizer;
+import org.languagetool.tokenizers.SentenceTokenizer;
+import org.languagetool.tokenizers.Tokenizer;
+import org.languagetool.tokenizers.gd.ScottishGaelicWordTokenizer;
 
 public class ScottishGaelic extends Language {
-/*
+
   private Tagger tagger;
   private Tokenizer wordTokenizer;
   private SentenceTokenizer sentenceTokenizer;
-  private Synthesizer synthesizer;
-  private Disambiguator disambiguator;
+  // private Synthesizer synthesizer;
+  // private Disambiguator disambiguator;
 
   @Override
   public SentenceTokenizer getSentenceTokenizer() {
@@ -52,7 +52,7 @@ public class ScottishGaelic extends Language {
     }
     return sentenceTokenizer;
   }
-*/
+
   @Override
   public String getName() {
     return "Scottish Gaelic";
@@ -67,7 +67,7 @@ public class ScottishGaelic extends Language {
   public String[] getCountries() {
     return new String[]{"GB, CA"};
   }
-/*
+
   @Override
   public Tagger getTagger() {
     if (tagger == null) {
@@ -83,7 +83,7 @@ public class ScottishGaelic extends Language {
     }
     return wordTokenizer;
   }
-
+/*
   @Override
   public Synthesizer getSynthesizer() {
     if (synthesizer == null) {
@@ -99,7 +99,7 @@ public class ScottishGaelic extends Language {
     }
     return disambiguator;
   }
-
+*/
     @Override
     public List<Rule> getRelevantRules(ResourceBundle messages) throws IOException {
       return Arrays.asList(
@@ -111,13 +111,9 @@ public class ScottishGaelic extends Language {
               new HunspellRule(messages, this),
               new UppercaseSentenceStartRule(messages, this),
               new MultipleWhitespaceRule(messages, this),
-              // Specific to Galician:
-              new SimpleReplaceRule(messages),
-              new CastWordsRule(messages)
       );
     }
 
-*/
   @Override
   public Contributor[] getMaintainers() {
     return new Contributor[] { new Contributor("Catrìona Anderson") };
