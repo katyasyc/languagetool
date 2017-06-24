@@ -337,7 +337,6 @@ public class CaseRule extends Rule {
     "Verlobter",
     "Anstrich",
     "Armes",
-    "Aus",    // "vor dem Aus stehen"
     "Ausdrücke",
     "Auswüchsen",
     "Bände",
@@ -357,12 +356,9 @@ public class CaseRule extends Rule {
     "Folgendes",   // je nach Kontext groß (TODO)...
     "Fort",
     "Fraß",
-    "Für",      // "das Für und Wider"
     "Genüge",
     "Gefallen", // Gefallen finden
     "Gläubiger",
-    "Goldener",    // Goldener Schnitt
-    "Guten",    // das Kap der Guten Hoffnung
     "Hechte",
     "Herzöge",
     "Herzögen",
@@ -437,7 +433,6 @@ public class CaseRule extends Rule {
     "Tausend",   // je nach Kontext groß (TODO)
     "Tischende",
     "Toter",
-    "tun",   // "Sie müssen das tun"
     "Übrigen",   // je nach Kontext groß (TODO), z.B. "im Übrigen"
     "Unentschieden",
     "Unvorhergesehenes",   // je nach Kontext groß (TODO), z.B. "etwas Unvorhergesehenes"
@@ -592,7 +587,6 @@ public class CaseRule extends Rule {
     substVerbenExceptions.add("helfen");
     substVerbenExceptions.add("lassen");
     substVerbenExceptions.add("passieren");  // "das Schlimmste, das passieren könnte"
-    substVerbenExceptions.add("machen");  // "Du kannst das machen."
     substVerbenExceptions.add("haben");  // "Das haben schon viele versucht."
     substVerbenExceptions.add("passiert");  // "Das passiert..."
     substVerbenExceptions.add("beschränkt");  // "Das beschränkt sich..."
@@ -690,18 +684,19 @@ public class CaseRule extends Rule {
           AnalyzedTokenReadings nextToken = tokens[i + 1];
           // avoid false alarm for "Das haben wir getan." etc:
           nextTokenIsPersonalOrReflexivePronoun = nextToken.hasPartialPosTag("PRO:PER") || nextToken.getToken().equals("sich") || nextToken.getToken().equals("Sie");
-          if (nextToken.isSentenceEnd() || nextToken.getToken().equals(",")) {
+          if ("!?.\",".contains(nextToken.getToken())) {
             // avoid false alarm for "So sollte das funktionieren." (might also remove true alarms...)
             continue;
           }
           if (prevTokenIsDas
               && (DAS_VERB_EXCEPTIONS.contains(nextToken.getToken()) ||
                   isFollowedByRelativeOrSubordinateClause(i, tokens)) ||
-                  (i > 1 && hasPartialTag(tokens[i-2], "VER:AUX"))) {
+                  (i > 1 && hasPartialTag(tokens[i-2], "VER:AUX", "VER:MOD"))) {
             // avoid false alarm for "Er kann ihr das bieten, was sie verdient."
             // avoid false alarm for "Das wissen die meisten." / "Um das sagen zu können, ..."
             // avoid false alarm for "Du musst/solltest/könntest das wissen, damit du die Prüfung bestehst / weil wir das gestern besprochen haben."
         	// avoid false alarm for "Wir werden das stoppen."
+        	// avoid false alarm for "Wahre Liebe muss das aushalten."
             continue;
           }
         }
@@ -744,6 +739,10 @@ public class CaseRule extends Rule {
 
   private int getTokensWithPartialPosTagCount(AnalyzedTokenReadings[] tokens, String partialPosTag) {
     return Arrays.stream(tokens).filter(token -> token.hasPartialPosTag(partialPosTag)).mapToInt(e -> 1).sum();
+  }
+
+  private int getTokensWithMatchingPosTagRegexp(AnalyzedTokenReadings[] tokens, String regexp) {
+    return Arrays.stream(tokens).filter(token -> token.matchesPosTagRegex(regexp)).mapToInt(e -> 1).sum();
   }
 
   private boolean isPotentialUpperCaseError (int pos, AnalyzedTokenReadings[] tokens,
@@ -960,10 +959,11 @@ private void addRuleMatch(List<RuleMatch> ruleMatches, String msg, AnalyzedToken
         }
       }
       return (prevToken != null && ("irgendwas".equals(prevTokenStr) || "aufs".equals(prevTokenStr) || isNumber(prevTokenStr))) ||
-         (hasPartialTag(prevToken, "ART", "PRO:") && !((prevToken.getReadings().size() == 1 || prevPrevToken.hasLemma("sein")) && prevToken.hasPartialPosTag("PRO:PER:NOM:"))  && !prevToken.hasPartialPosTag(":STD")) ||  // "die Verurteilten", "etwas Verrücktes", "ihr Bestes"
+         (hasPartialTag(prevToken, "ART", "PRO:") && !(((i < 4 && tokens.length > 4) || prevToken.getReadings().size() == 1 || prevPrevToken.hasLemma("sein")) && prevToken.hasPartialPosTag("PRO:PER:NOM:"))  && !prevToken.hasPartialPosTag(":STD")) ||  // "die Verurteilten", "etwas Verrücktes", "ihr Bestes"
          (hasPartialTag(prevPrevPrevToken, "ART") && hasPartialTag(prevPrevToken, "PRP") && hasPartialTag(prevToken, "SUB")) || // "die zum Tode Verurteilten"
          (hasPartialTag(prevPrevToken, "PRO:", "PRP") && hasPartialTag(prevToken, "ADJ", "ADV", "PA2", "PA1")) ||  // "etwas schön Verrücktes", "mit aufgewühltem Innerem"
-         (hasPartialTag(prevPrevPrevToken, "PRO:", "PRP") && hasPartialTag(prevPrevToken, "ADJ", "ADV") && hasPartialTag(prevToken, "ADJ", "ADV", "PA2"));  // "etwas ganz schön Verrücktes"
+         (hasPartialTag(prevPrevPrevToken, "PRO:", "PRP") && hasPartialTag(prevPrevToken, "ADJ", "ADV") && hasPartialTag(prevToken, "ADJ", "ADV", "PA2")) || // "etwas ganz schön Verrücktes"
+         (tokens[i].hasPartialPosTag("VER:") && getTokensWithMatchingPosTagRegexp(tokens, "VER:[123]:SIN:.*") > 1 && getTokensWithPartialPosTagCount(tokens, "PKT") < 2); // "Parks Vertraute Choi Soon Sil ist zu drei Jahren Haft verurteilt worden."
     }
     return false;
   }
