@@ -1,13 +1,21 @@
 # LanguageTool Change Log
 
-## 3.8-SNAPSHOT (release planned for 2017-06-27)
+## 3.9-SNAPSHOT (release planned for 2017-09-26)
+
+ ...
+ 
+## 3.8 (2017-06-27)
 
 #### Catalan
   * added and improved rules
   * updated dictionary and rules for official names of Valencian municipalities
 
+#### Chinese
+  * added one rule
+
 #### Dutch
   * added many rules (by Ruud Baars)
+  * spelling dictionary update
 
 #### English
   * added and improved rules
@@ -34,11 +42,14 @@
   * false friends support added
     - Portuguese to Catalan (26 new pairs)
     - Portuguese to Spanish (7 new pairs)
-  * spell checking exceptions for common Latin, English and French expressions, species scientific names,
+  * spell checking exceptions for common Latin, English, and French expressions, species scientific names,
     and famous personalities
   * updated Hunspell dictionaries to:
     - [pt-PT pos-AO] Dicionários Portugueses Complementares 1.4
     - [pt-BR]        VERO version 2.1.4
+
+#### Russian
+  * added and improved rules
 
 #### Slovak
   * major rule updates by Matúš Matula
@@ -61,7 +72,7 @@
 
 #### Internal
   * `spelling.txt` allows multi-word entries: the words/tokens (separated by " ") of one
-    line are converted to a `DisambiguationPatternRule` in which each word is as a case-sensitive
+    line are converted to a `DisambiguationPatternRule` in which each word is a case-sensitive
     and non-inflected `PatternToken` (result: the entire multi-word entry is ignored by
     the spell checker)
 

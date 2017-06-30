@@ -1836,32 +1836,39 @@ though, and has since been slightly modified)-->
     <!-- mis en default="off" car cette règle génère des fausses alertes sur toutes les phrases avec un attribut du sujet, etc. -->
     <rule default="off" id="SONT_SON" name="SONT au lieu de SON">
       <pattern>
-        <marker>
-          <token>sont</token>
-        </marker>
+        <marker><token>sont</token></marker>
         <token postag="[NJ].*" postag_regexp="yes"/>
       </pattern>
       <message>Voulez-vous écrire <suggestion>son</suggestion> ?</message>
       <example correction="son">Le problème c’est qu’apparemment elle n’a pas <marker>sont</marker> mot de passe...</example>
       <example>Le problème c’est qu’apparemment elle n’a pas <marker>son</marker> mot de passe...</example>
     </rule>
-    <rule id="SON_SONT" name="SON au lieu de SONT">
-      <pattern>
-        <token negate="yes" regexp="yes">au|le|du|un|bande|même</token>
-        <marker>
-          <token>son<exception postag="N m s"/></token>
-        </marker>
-        <token postag="[VR].*|P" postag_regexp="yes"><exception postag="[NJ] .*" postag_regexp="yes"/></token>
-      </pattern>
-      <message>Voulez-vous écrire <suggestion>sont</suggestion> ?</message>
-      <example>Les Chinoises sont celles qui se marient le plus avec les Sud-Coréens.</example>
-      <example correction="sont">Les Chinoises <marker>son</marker> celles qui se marient le plus avec les Sud-Coréens.</example>
-      <example correction="sont">Ils <marker>son</marker> dans la même classe.</example>
-      <example>Le <marker>son</marker> dans l’informatique</example>
-      <example>Son indigne frère</example>
-      <example>Au son de la voix</example>
-      <example>Même son de cloche</example>
-    </rule>
+    <rulegroup id="SON_SONT" name="SON au lieu de SONT">
+      <rule>
+        <pattern>
+          <token regexp="yes">ne|ils</token>
+          <marker><token>son</token></marker>
+        </pattern>
+        <message>Voulez-vous écrire <suggestion>sont</suggestion> ?</message>
+        <example correction="sont">Ils ne <marker>son</marker> pas ici.</example>
+        <example correction="sont">Ils <marker>son</marker> ici.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token negate="yes" regexp="yes">au|le|du|un|bande|même</token>
+          <marker><token>son<exception postag="N m s"/></token></marker>
+          <token postag="[VR].*|P" postag_regexp="yes"><exception postag="[NJ] .*" postag_regexp="yes"/></token>
+        </pattern>
+        <message>Voulez-vous écrire <suggestion>sont</suggestion> ?</message>
+        <example>Les Chinoises sont celles qui se marient le plus avec les Sud-Coréens.</example>
+        <example correction="sont">Les Chinoises <marker>son</marker> celles qui se marient le plus avec les Sud-Coréens.</example>
+        <example correction="sont">Ils <marker>son</marker> dans la même classe.</example>
+        <example>Le <marker>son</marker> dans l’informatique</example>
+        <example>Son indigne frère</example>
+        <example>Au son de la voix</example>
+        <example>Même son de cloche</example>
+      </rule>
+    </rulegroup>
     <rulegroup id="ET_BIEN" name="ET BIEN au lieu de EH BIEN">
       <rule>
         <pattern>
@@ -7600,7 +7607,7 @@ though, and has since been slightly modified)-->
           <marker><token case_sensitive="yes">Renne</token></marker>
         </pattern>
         <message>Confusion probable entre la ville de <suggestion>Rennes</suggestion> en Bretagne et le mammifère « renne ».</message>
-        <example correction="Rennes">J'habite à <marker>Renne</marker>.</example>
+        <example correction="Rennes">J’habite à <marker>Renne</marker>.</example>
       </rule>
       <rule>
         <pattern>
@@ -9844,8 +9851,8 @@ though, and has since been slightly modified)-->
           </marker>
         </pattern>
         <message>Le mot singulier « \8 » n’est pas accordé en nombre avec le mot pluriel « \2 ».</message>
-        <example correction="">Nous avions l'air <marker>fatigué</marker>.</example>
-        <example>Nous avions l'air <marker>fatigués</marker>.</example>
+        <example correction="">Nous avions l’air <marker>fatigué</marker>.</example>
+        <example>Nous avions l’air <marker>fatigués</marker>.</example>
       </rule>
       <rule>
         <pattern>
@@ -13575,6 +13582,61 @@ though, and has since been slightly modified)-->
       <example correction="">Elle est certaine que vous <marker>soyez</marker> un espion.</example>
       <example>Elle est certaine que vous <marker>êtes</marker> un espion.</example>
     </rule>
+    <rulegroup id="J_AIMERAI" name="j’aimerai, j’aimerais">
+      <rule>
+        <pattern>
+          <token>j</token>
+          <token regexp="yes">[’´'‛′‘]</token>
+          <marker><token regexp="yes">aimerai|apprécierai</token></marker>
+          <token regexp="yes">que?|bien|[mt]e?|[nv]ous|lui|ne</token>
+        </pattern>
+        <message>Voulez-vous utiliser le conditionel <suggestion>\3s</suggestion> au lieu du futur « \3 » pour exprimer un souhait ?</message>
+        <example correction="aimerais">J’<marker>aimerai</marker> bien travailler ici.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>je</token>
+          <token>n</token>
+          <token regexp="yes">[’´'‛′‘]</token>
+          <marker><token regexp="yes">aimerai|apprécierai</token></marker>
+          <token>pas</token>
+          <token regexp="yes">que?|[mt]e|[nv]ous|lui</token>
+        </pattern>
+        <message>Voulez-vous utiliser le conditionel <suggestion>\4s</suggestion> au lieu du futur « \4 » pour exprimer un souhait ?</message>
+        <example correction="aimerais">Je n’<marker>aimerai</marker> pas lui dire.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>je</token>
+          <marker><token regexp="yes">désirerai|préférerai|souhaiterai|voudrai</token></marker>
+          <token regexp="yes">que?|[mt]e|[nv]ous|lui|ne</token>
+        </pattern>
+        <message>Voulez-vous utiliser le conditionel <suggestion>\2s</suggestion> au lieu du futur « \2 » pour exprimer un souhait ?</message>
+        <example correction="voudrais">Je <marker>voudrai</marker> vous voir.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>je</token>
+          <token>ne</token>
+          <marker><token regexp="yes">désirerai|préférerai|souhaiterai|voudrai</token></marker>
+          <token>pas</token>
+          <token regexp="yes">[mt]e?|[nv]ous|lui|ne</token>
+        </pattern>
+        <message>Voulez-vous utiliser le conditionel <suggestion>\3s</suggestion> au lieu du futur « \3 » pour exprimer un souhait ?</message>
+        <example correction="voudrais">Je ne <marker>voudrai</marker> pas lui dire.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>je</token>
+          <marker><token regexp="yes">désirerai|préférerai|souhaiterai|voudrai</token></marker>
+          <token>ne</token>
+          <token regexp="yes">pas|plus</token>
+          <token regexp="yes">[mt]e|[nv]ous|lui</token>
+        </pattern>
+        <message>Voulez-vous utiliser le conditionel <suggestion>\2s</suggestion> au lieu du futur « \2 » pour exprimer un souhait ?</message>
+        <example correction="préférerais">Je <marker>préférerai</marker> ne pas vous voir.</example>
+      </rule>
+    </rulegroup>
     <rulegroup id="P_V_PAS" name="négation sans NE">
       <rule>
         <pattern>
@@ -28599,7 +28661,7 @@ though, and has since been slightly modified)-->
         <example correction="aux">Adressez-vous directement <marker>auprès des</marker> agents de sécurité.</example>
       </rule>
       <rule>
-        <pattern> 
+        <pattern>
           <marker>
             <token>auprès</token>
             <token>de</token>
